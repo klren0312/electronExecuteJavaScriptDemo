@@ -4,54 +4,47 @@ import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 import path from 'path'
-// Scheme must be registered before the app is ready
+
 protocol.registerSchemesAsPrivileged([
   { scheme: 'app', privileges: { secure: true, standard: true } }
 ])
+
+
 let win = null
 let secondWin = null
 
 async function createWindow() {
-  // Create the browser window.
   win = new BrowserWindow({
     width: 300,
     height: 300,
     webPreferences: {
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
-      webviewTag: true
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION
     }
   })
 
-  console.log(process.env.WEBPACK_DEV_SERVER_URL)
-
   if (process.env.WEBPACK_DEV_SERVER_URL) {
-    // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
     if (!process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
-    // Load the index.html when not in development
     win.loadURL('app://./index.html')
   }
 }
 
 async function createSecondWindow() {
-  // Create the browser window.
   secondWin = new BrowserWindow({
     width: 300,
     height: 300,
     webPreferences: {
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
       contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
-      enableRemoteModule: true,
-      webviewTag: true,
       preload: path.join(__dirname, 'preload.js')
     }
   })
-  // const ipc = require('electron').ipcRenderer
 
   secondWin.webContents.loadURL('https://www.baidu.com')
+  // add the button, and add click event to ipc
   secondWin.webContents.executeJavaScript(`
       const btn = document.createElement('button')
       btn.innerText = 'test'
@@ -64,9 +57,6 @@ async function createSecondWindow() {
         window.ipcRenderer.send('test', 'test')
       })
     `, true)
-      .then((result) => {
-        console.log(result) // Will be the JSON object from the fetch call
-      })
   secondWin.webContents.openDevTools()
 
 }
