@@ -1,4 +1,29 @@
 window.ipcRenderer = require('electron').ipcRenderer
+window.onload = () => {
+  const chobitsu = require('chobitsu')
+  console.log(document.documentElement)
+  chobitsu.setOnMessage(message => {
+    message = JSON.parse(message)
+    console.log(message)
+    switch (message.method) {
+      case 'Overlay.nodeHighlightRequested':
+        // console.log(chobitsu.domain('DOM').getNodeByNodeId(message.params.nodeId))
+        break
+      case 'Overlay.inspectNodeRequested':
+        break
+    }
+  })
+  chobitsu.domain('Overlay').enable()
+  chobitsu.domain('Overlay').setInspectMode({
+    highlightConfig: {
+      showInfo: false,
+      contentColor: 'rgba(111, 168, 220, .66)',
+      paddingColor: 'rgba(147, 196, 125, .55)',
+      borderColor: 'rgba(255, 229, 153, .66)',
+      marginColor: 'rgba(246, 178, 107, .66)',
+    }
+  })
+}
 // add delay, to get dom
 setTimeout(() => {
   const btn = document.createElement('button')
