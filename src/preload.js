@@ -1,15 +1,21 @@
 window.ipcRenderer = require('electron').ipcRenderer
 window.onload = () => {
-  const chobitsu = require('chobitsu')
-  console.log(document.documentElement)
+  const chobitsu = require('z-chobitsu')
+  console.log(chobitsu)
   chobitsu.setOnMessage(message => {
     message = JSON.parse(message)
-    console.log(message)
     switch (message.method) {
       case 'Overlay.nodeHighlightRequested':
-        // console.log(chobitsu.domain('DOM').getNodeByNodeId(message.params.nodeId))
         break
       case 'Overlay.inspectNodeRequested':
+        let nodeId = null
+        if (message.params?.nodeId) {
+          nodeId = message.params.nodeId
+        } else if (message.params?.backendNodeId) {
+          nodeId = message.params.backendNodeId
+        }
+        const dom = chobitsu.domain('DOM').getNodeByNodeId(nodeId)
+        console.log(dom)
         break
     }
   })
@@ -23,9 +29,7 @@ window.onload = () => {
       marginColor: 'rgba(246, 178, 107, .66)',
     }
   })
-}
-// add delay, to get dom
-setTimeout(() => {
+
   const btn = document.createElement('button')
   btn.innerText = 'test'
   btn.style.position = 'absolute'
@@ -208,4 +212,4 @@ setTimeout(() => {
     // Return the localname, which will be case insensitive if its an html node
     return node.localName
   }
-}, 3000)
+}

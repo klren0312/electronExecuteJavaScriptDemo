@@ -2742,11 +2742,6 @@ check-types@^8.0.3:
   resolved "https://mirrors.tencent.com/npm/check-types/-/check-types-8.0.3.tgz#3356cca19c889544f2d7a95ed49ce508a0ecf552"
   integrity sha512-YpeKZngUmG65rLudJ4taU7VLkOCTMhNl/u4ctNC56LQS/zJTyNH0Lrtwm1tfTsbLlwvlfsA2d1c8vCf/Kh2KwQ==
 
-chobitsu@^0.4.0:
-  version "0.4.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/chobitsu/-/chobitsu-0.4.0.tgz#e322b99c4bc97fc1e004caa29ae1500a9954be91"
-  integrity sha512-dz554sZq1+5PJjqXgSX+k/wXc7QPH5RQr04CC0qAmFObzof2tGlr88VrTBosRSQ0KMAjxWkdubzfr6L0d8LcDg==
-
 "chokidar@>=3.0.0 <4.0.0", chokidar@^3.0.2, chokidar@^3.4.1:
   version "3.5.3"
   resolved "https://mirrors.tencent.com/npm/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
@@ -9802,3 +9797,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://mirrors.tencent.com/npm/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+z-chobitsu@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.npmjs.org/z-chobitsu/-/z-chobitsu-0.3.3.tgz#f4ead369402661ad1afc3f0a94a64322077a6165"
+  integrity sha512-lNp7Fw1KZJzhPiJaygzgoF9yo1w8nCzEsCnEGyW1GYFUZDp+JflHPsc5XvXl8o11IdElgWMxs16S/YSCa0jVIQ==
