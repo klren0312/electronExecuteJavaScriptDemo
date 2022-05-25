@@ -1,7 +1,6 @@
 window.ipcRenderer = require('electron').ipcRenderer
 window.onload = () => {
   const chobitsu = require('z-chobitsu')
-  console.log(chobitsu)
   chobitsu.setOnMessage(message => {
     message = JSON.parse(message)
     switch (message.method) {
